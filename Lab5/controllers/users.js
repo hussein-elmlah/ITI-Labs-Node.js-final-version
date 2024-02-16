@@ -15,8 +15,8 @@ const create = async (input) => {
   return user;
 };
 
-const login = async (username, password) => {
-  const user = await Users.findOne({ userName: username }).exec();
+const login = async (_username, password) => {
+  const user = await Users.findOne({ username: _username }).exec();
   if (!user) {
     return new CustomError('UN_AUTH', 401);
   }
