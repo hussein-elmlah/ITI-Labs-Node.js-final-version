@@ -1,3 +1,5 @@
+// .eslintrc.js
 {
-    "extends": "airbnb"
+  "extends": "airbnb-base"
 }
+ 

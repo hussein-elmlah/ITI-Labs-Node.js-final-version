@@ -1,0 +1,367 @@
+{
+	"info": {
+		"_postman_id": "b61e7e91-5b00-49e8-bf82-4dc48d7c713e",
+		"name": "Node.js-Lab5-ToDo-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27971413"
+	},
+	"item": [
+		{
+			"name": "todos",
+			"item": [
+				{
+					"name": "getAllTodos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imh1c3NlaW4tZWxtbGFoIiwiaWQiOiI2NWQxMTkyMTVhMTE0NTQ3ZWFjZjBmYWEiLCJpYXQiOjE3MDgyMDIyNzQsImV4cCI6MTcwODgwNzA3NH0._2cpBQQGqLjZ90AJ0_OKFFB6FDrCqV3EIS_3ytX-2jI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/todos?limit=10&skip=0&status=to-do",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"todos"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "status",
+									"value": "to-do"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addTodo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imh1c3NlaW4tZWxtbGFoIiwiaWQiOiI2NWQxMTkyMTVhMTE0NTQ3ZWFjZjBmYWEiLCJpYXQiOjE3MDgyMDM2NzcsImV4cCI6MTcwODgwODQ3N30.PbmS_WPXYprjAc7PN1W01EjcueArDPuKfpmWT9Ri6NI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Buy groceries\",\r\n  \"tags\":[\"food\",\"eat\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteTodo",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imh1c3NlaW4tZWxtbGFoIiwiaWQiOiI2NWQxMTkyMTVhMTE0NTQ3ZWFjZjBmYWEiLCJpYXQiOjE3MDgyMDIyNzQsImV4cCI6MTcwODgwNzA3NH0._2cpBQQGqLjZ90AJ0_OKFFB6FDrCqV3EIS_3ytX-2jI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/todos/65d1466593ea120985cdae2d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"todos",
+								"65d1466593ea120985cdae2d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateTodo",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imh1c3NlaW4tZWxtbGFoIiwiaWQiOiI2NWQxMTkyMTVhMTE0NTQ3ZWFjZjBmYWEiLCJpYXQiOjE3MDgyMDIyNzQsImV4cCI6MTcwODgwNzA3NH0._2cpBQQGqLjZ90AJ0_OKFFB6FDrCqV3EIS_3ytX-2jI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Buy groceries\",\r\n  \"status\": \"done\",\r\n    \"tags\":[\"diet\",\"    \",\"    \"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/todos/65ceb3ec839d9fa2339fe173",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"todos",
+								"65ceb3ec839d9fa2339fe173"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "getUserTodos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imh1c3NlaW4tZWxtbGFoIiwiaWQiOiI2NWQxMTkyMTVhMTE0NTQ3ZWFjZjBmYWEiLCJpYXQiOjE3MDgyMTQ0MjAsImV4cCI6MTcwODgxOTIyMH0.VHmOMoR1or5LBzdcv48ldmfT0UuHgID5URHxhfZXOKM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/65d119215a114547eacf0faa/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"65d119215a114547eacf0faa",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"hussein-elmlah14\",\r\n  \"firstName\": \"hussein\",\r\n  \"lastName\": \"elmlah\",\r\n  \"dob\": \"1995-10-14\",\r\n  \"password\": \"0123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"hussein-elmlah\",\r\n  \"password\": \"0123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imh1c3NlaW4tZWxtbGFoMTQiLCJpZCI6IjY1ZDE2MjVkMWY4OWVmNTJlNTY4MmEzMyIsImlhdCI6MTcwODIyMTAyMSwiZXhwIjoxNzA4ODI1ODIxfQ.WZpI5C-bTBhNB7KIyw9BgGakD1Yiqlq05rA9W1a-Ygw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"ahmed_ali2\",\r\n    \"firstName\": \"Ahmed\",\r\n    \"lastName\": \"Ali\",\r\n    \"dob\": \"1995-08-15\",\r\n    \"password\": \"   0123456789  \"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/65c912bd2cd330e64436a57e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"65c912bd2cd330e64436a57e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imh1c3NlaW4tZWxtbGFoIiwiaWQiOiI2NWQxMTkyMTVhMTE0NTQ3ZWFjZjBmYWEiLCJpYXQiOjE3MDgyMTgxMTMsImV4cCI6MTcwODgyMjkxM30.TfqI7O3H6PvlnQC-sVxAXPpFd-H5-0A3wtyeuJL0o_4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"Abdo-Abdo\",\r\n  \"firstName\": \"Abdo\",\r\n  \"lastName\": \"Abdo\",\r\n  \"password\": \"lllllllll\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/65c912762cd330e64436a577",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"65c912762cd330e64436a577"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUsers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imh1c3NlaW4tZWxtbGFoIiwiaWQiOiI2NWQxMTkyMTVhMTE0NTQ3ZWFjZjBmYWEiLCJpYXQiOjE3MDgyMTQ0MjAsImV4cCI6MTcwODgxOTIyMH0.VHmOMoR1or5LBzdcv48ldmfT0UuHgID5URHxhfZXOKM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

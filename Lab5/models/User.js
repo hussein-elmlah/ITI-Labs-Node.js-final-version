@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const CustomError = require("../lib/customError");
 
 const userSchema = new mongoose.Schema(
   {
@@ -29,9 +30,28 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 8,
     },
+    role: {
+      type: String,
+      enum: ["admin", "user"],
+      default: "user",
+    },
   },
   { timestamps: true, runValidators: true }
 );
+
+// Define a toJSON method to control the JSON output when converting Mongoose documents to JSON
+userSchema.set("toJSON", {
+  // The transform function allows you to modify the JSON representation of the document
+  transform: function (doc, ret) {
+    // Rename the '_id' field to 'id' for better readability
+    ret.id = ret._id;
+    // Remove the '_id' and '__v' fields from the JSON output
+    delete ret._id;
+    delete ret.__v;
+    // Remove the 'password' field from the JSON output for security reasons
+    delete ret.password;
+  },
+});
 
 // Hook to trim all input strings before validating
 userSchema.pre("validate", function (next) {
@@ -78,36 +98,26 @@ userSchema.pre("findOneAndUpdate", async function (next) {
   }
 });
 
-userSchema.post("findOneAndUpdate", async function (doc) {
-  // Save the document to persist the changes
-  if (
-    this._update.$set.password &&
-    typeof this._update.$set.password === "string"
-  ) {
-    // Access the document being updated and mark 'password' field as modified
-    doc.markModified("password");
+userSchema.post("findOneAndUpdate", async function (doc, next) {
+  try {
+    // Check if doc exists
+    if (!doc) {
+      // Handle the case where no user is found
+      throw new CustomError("user not found", 404);
+    }
+    // Save the document to persist the changes
+    if (this._update.$set.password && typeof this._update.$set.password === "string") {
+      // Access the document being updated and mark 'password' field as modified
+      doc.markModified("password");
+    }
+    await doc.save();
+  } catch (error) {
+    next(error);
   }
-
-  await doc.save();
 });
 
-// Define a toJSON method to control the JSON output when converting Mongoose documents to JSON
-userSchema.set("toJSON", {
-  // The transform function allows you to modify the JSON representation of the document
-  transform: function (doc, ret) {
-    // Rename the '_id' field to 'id' for better readability
-    ret.id = ret._id;
-    // Remove the '_id' and '__v' fields from the JSON output
-    delete ret._id;
-    delete ret.__v;
-    // Remove the 'password' field from the JSON output for security reasons
-    delete ret.password;
-  },
-});
-
-userSchema.methods.verifyPassword = async function verifyPassword(password) {
-  const valid = await bcrypt.compare(password, this.password);
-  return valid;
+userSchema.methods.verifyPassword = function verifyPassword (password) {
+  return bcrypt.compareSync(password, this.password);
 };
 
 module.exports = mongoose.model("User", userSchema);
